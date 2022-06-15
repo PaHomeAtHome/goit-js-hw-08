@@ -11,7 +11,7 @@ let formData = {};
 restoreFormData()
 
 function saveFormData(event) {
-    
+
     formData[event.target.name] = event.target.value;
 
     const localFormData = JSON.stringify(formData)
@@ -24,13 +24,14 @@ function restoreFormData() {
     const savedData = localStorage.getItem(STORAGE_KEY);
 
     if (savedData) {
-    
     const parsedData = JSON.parse(savedData)
-    const elements = formEl.querySelectorAll(`[name]`)
+        const elements = formEl.querySelectorAll(`[name]`)
 
     for (const element of elements) {
         if (Object.keys(parsedData).includes(element.name)) {
-            element.value = parsedData[element.name];}
+            element.value = parsedData[element.name];
+            formData[element.name] = parsedData[element.name];
+        }
         }
     }
     
